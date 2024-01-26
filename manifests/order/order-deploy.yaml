@@ -1,7 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
   labels:
     app: order
     version: v1
@@ -11,10 +10,8 @@ spec:
   selector:
     matchLabels:
       app: order
-  strategy: {}
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: order
         version: v1
@@ -25,9 +22,7 @@ spec:
         prometheus.io/scheme: "http"
     spec:
       containers:
-      - image: quay.io/gsosads/ossm-metrics-order:1.0
+      - image: tagost/order
         name: order
         ports:
         - containerPort: 8080
-        resources: {}
-status: {}
