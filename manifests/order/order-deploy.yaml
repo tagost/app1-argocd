@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: order
+    version: v1
+  name: order
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: order
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: order
+        version: v1
+      annotations:
+        sidecar.istio.io/inject: "true"
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8080"
+        prometheus.io/scheme: "http"
+    spec:
+      containers:
+      - image: quay.io/gsosads/ossm-metrics-order:1.0
+        name: order
+        ports:
+        - containerPort: 8080
+        resources: {}
+status: {}
