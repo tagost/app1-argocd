@@ -22,7 +22,7 @@ spec:
         prometheus.io/scheme: "http"
     spec:
       containers:
-      - image: tagost/order:v243
+      - image: tagost/order:8b92cb8
         name: order
         ports:
         - containerPort: 8080
