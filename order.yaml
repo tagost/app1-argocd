@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: order
+  namespace: argocd
+spec:
+  destination:
+    namespace: app1
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: manifests/order
+    repoURL: https://github.com/tagost/app1-argocd.git
+    targetRevision: main
+  syncPolicy:
+    automated: {}
+    syncOptions:
+    - CreateNamespace=true
